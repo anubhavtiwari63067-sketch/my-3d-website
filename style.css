@@ -1,0 +1,196 @@
+/* --- Global Styles --- */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); /* 3D effect background */
+    color: #e0e0e0;
+    perspective: 1000px; /* For 3D transformations */
+}
+
+a {
+    color: #87ceeb; /* Light sky blue */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #add8e6; /* Lighter sky blue */
+}
+
+/* --- index.html (3D Button Page) Styles --- */
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.three-d-button {
+    background-color: #e94560; /* Deep pink */
+    color: white;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 12px;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    box-shadow: 
+        0 8px 0px 0px #c12a43, /* Bottom shadow */
+        0 15px 25px rgba(0, 0, 0, 0.4); /* General shadow for lift */
+    transition: all 0.2s ease-out;
+    transform: translateY(0); /* Initial position */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.three-d-button:hover {
+    background-color: #ff6a80; /* Lighter pink on hover */
+    transform: translateY(-5px); /* Lift button on hover */
+    box-shadow: 
+        0 10px 0px 0px #c12a43, 
+        0 20px 35px rgba(0, 0, 0, 0.5);
+}
+
+.three-d-button:active {
+    background-color: #c12a43; /* Darker pink on click */
+    transform: translateY(3px); /* Push button down on click */
+    box-shadow: 
+        0 3px 0px 0px #c12a43, 
+        0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* --- content.html (3D Content Page) Styles --- */
+.content-page-body {
+    background: radial-gradient(circle at top left, #2f2e41, transparent), 
+                radial-gradient(circle at bottom right, #1a1a2e, transparent), 
+                linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.content-container {
+    max-width: 1000px;
+    width: 90%;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transform-style: preserve-3d; /* Enable 3D transformations for children */
+}
+
+.content-header {
+    text-align: center;
+    margin-bottom: 40px;
+    transform: translateZ(50px) rotateX(-5deg); /* Move forward and tilt slightly */
+    transition: transform 0.5s ease-out;
+    color: #e94560;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.content-header h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.content-header p {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
+.content-section {
+    background-color: rgba(25, 33, 50, 0.9); /* Darker transparent background */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 
+        5px 5px 15px rgba(0, 0, 0, 0.5), /* Main shadow */
+        -5px -5px 15px rgba(50, 60, 80, 0.2); /* Inner light for depth */
+    border: 1px solid rgba(70, 80, 100, 0.3);
+    -webkit-backdrop-filter: blur(10px); /* Frosted glass effect, with prefix for Safari/old Edge */
+    backdrop-filter: blur(10px); /* Standard property for modern browsers */
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out, box-shadow 0.3s ease;
+}
+
+.card-3d {
+    transform: translateZ(20px) rotateY(-2deg) rotateX(2deg); /* Initial 3D tilt */
+}
+
+/* Hover effect for content cards */
+.content-section:hover {
+    transform: translateZ(40px) rotateY(0deg) rotateX(0deg); /* Bring forward and straighten */
+    box-shadow: 
+        10px 10px 25px rgba(0, 0, 0, 0.6), 
+        -10px -10px 25px rgba(50, 60, 80, 0.3);
+}
+
+.content-section h2 {
+    color: #87ceeb; /* Light sky blue */
+    margin-top: 0;
+    font-size: 2em;
+    border-bottom: 2px solid rgba(135, 206, 235, 0.5);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.content-section p, .content-section ul {
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.content-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.content-section ul li {
+    padding-left: 25px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.content-section ul li::before {
+    content: '✨'; /* Sparkle bullet */
+    position: absolute;
+    left: 0;
+    color: #e94560;
+}
+
+.content-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(70, 80, 100, 0.3);
+    color: rgba(255, 255, 255, 0.7);
+    transform: translateZ(10px); /* Slight 3D depth */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .three-d-button {
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+
+    .content-header h1 {
+        font-size: 2.5em;
+    }
+
+    .content-header p {
+        font-size: 1em;
+    }
+
+    .content-section {
+        padding: 20px;
+    }
+
+    .content-section h2 {
+        font-size: 1.8em;
+    }
+}
